@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
 
-@Service
+
 public class MemberService {
 
 	private final MemberRepository memberRepository;
 
-	@Autowired
+	
 	public MemberService(MemberRepository memberRepository) {
 		super();
 		this.memberRepository = memberRepository;
