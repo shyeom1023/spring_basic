@@ -45,12 +45,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 	public List<Member> findAll() {
 		return jdbcTemplate.query("select * from member", memberRowMapper());
 	}
-
-	@Override
-	public Optional<Member> findByString(String name) {
-		List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(), name);
-		return result.stream().findAny();
-	}
+		
 
 	private RowMapper<Member> memberRowMapper() {
 		return (rs, rowNum) -> {
@@ -59,5 +54,11 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 			member.setName(rs.getString("name"));
 			return member;
 		};
+	}
+
+	@Override
+	public Optional<Member> findByName(String name) {
+		List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(), name);
+		return result.stream().findAny();
 	}
 }

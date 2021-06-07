@@ -31,20 +31,18 @@ public class JpaMemberRepository implements MemberRepository {
 	}
 
 	@Override
-	public Optional<Member> findByString(String name) {
-		// TODO Auto-generated method stub
-
-		List<Member> resultList = em.createQuery("select m from Member m where m.name = :name", Member.class)
-				.setParameter("name", name).getResultList();
-
-		return resultList.stream().findAny();
-	}
-
-	@Override
 	public List<Member> findAll() {
 		// TODO Auto-generated method stub
 		List<Member> resultList = em.createQuery("select m from Member as m", Member.class).getResultList();
 		return resultList;
+	}
+
+	@Override
+	public Optional<Member> findByName(String name) {
+		List<Member> resultList = em.createQuery("select m from Member m where m.name = :name", Member.class)
+				.setParameter("name", name).getResultList();
+
+		return resultList.stream().findAny();
 	}
 
 }
