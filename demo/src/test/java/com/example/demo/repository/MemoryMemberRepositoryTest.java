@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.example.demo.domain.Member;
@@ -29,6 +30,7 @@ public class MemoryMemberRepositoryTest {
 		assertThat(member).isEqualTo(result);
 	}
 
+	@DisplayName(value = "гоюл")
 	@Test
 	public void findByName() {
 		Member member1 = new Member();
