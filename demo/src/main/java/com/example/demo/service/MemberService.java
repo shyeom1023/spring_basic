@@ -3,9 +3,12 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
 
+@Transactional
 public class MemberService {
 
 	private final MemberRepository memberRepository;
@@ -31,7 +34,7 @@ public class MemberService {
 	}
 
 	private void validateDuplicateMember(Member member) {
-		Optional<Member> result = memberRepository.findByString(member.getName());
+		Optional<Member> result = memberRepository.findByName(member.getName());
 
 		result.ifPresent(m -> {
 			throw new IllegalStateException("이미 존재하는 회원입니다.");
